@@ -11,7 +11,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   const sqlText = `SELECT * FROM recipes 
   WHERE user_id = $1 ORDER BY title ASC;`
   const user = req.user.id;
-  console.log('here is the user id', user)
+  //console.log('here is the user id', user)
 
   pool.query(sqlText, [user])
   .then((results) => {

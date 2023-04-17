@@ -1,6 +1,6 @@
 import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { pink } from '@mui/material/colors';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -12,6 +12,14 @@ import { useEffect } from 'react';
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+  const recipes = useSelector((store) => store.recipeReducer)
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    dispatch({type: 'GET_ALL_RECIPES'})
+  }, []);
+
   return (
     <div className="container">
       {/* Here is where the buttons are made to create a dispatch to filter the recipes from the database */}
@@ -26,7 +34,15 @@ function UserPage() {
         <Button variant='outlined' sx={{backgroundColor: '', color: 'white', width: 100}}>Clear</Button>
       </div>
       {/* Here is where i will map over the recipes in my database */}
-      <div></div>
+      <div>
+        {recipes.map(recipe => {
+          return (<>
+            <ul key={recipe.id}>
+              <li style={{color: 'white'}}>{recipe.title}</li>
+            </ul>
+            </> )
+        })}
+      </div>
     </div>
   );
 }
