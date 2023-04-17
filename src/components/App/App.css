@@ -1,5 +1,9 @@
-html,
-body,
+
+body {
+ background-image: url('https://img.freepik.com/free-vector/gradient-universe-background_23-2149635763.jpg');
+ background-repeat: no-repeat;
+ background-size:100%;
+}
 #react-root {
   height: 100%;
 }
@@ -11,7 +15,7 @@ body {
 
 img {
   display: inline-block;
-  max-width: 100%;
+  max-width: 5%;
 }
 
 /* --------------------------------------------------------------------------------
