@@ -8,3 +8,12 @@ CREATE TABLE "user" (
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL
 );
+
+CREATE TABLE "recipes" (
+	"id" SERIAL PRIMARY KEY,
+	"image" VARCHAR (255) NOT NULL,
+	"ingredients" VARCHAR (1000) NOT NULL,
+	"directions" VARCHAR (1000) NOT NULL,
+	"category" VARCHAR (100) NOT NULL,
+	"user_id" INT REFERENCES "user"
+);
