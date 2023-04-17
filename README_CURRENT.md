@@ -10,3 +10,7 @@
 2. Fill out your password
 3. Select your avatar
 <!-- Home Screen -->
+1. There is an avatar showing based on whos logged in
+2. Title to show where you are at
+3. Buttons to filter the recipies you are looking at
+4. Recipies are listed 
