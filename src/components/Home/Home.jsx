@@ -10,7 +10,7 @@ function UserPage() {
   const user = useSelector((store) => store.user);
   const recipes = useSelector((store) => store.recipeReducer)
   const dispatch = useDispatch();
-  const [toggleView, setToggleView] = useState(true)
+  const [toggleView, setToggleView] = useState(false)
 
 
   useEffect(() => {
@@ -21,14 +21,13 @@ function UserPage() {
     <div className="container">
       {/* Here is where the buttons are made to create a dispatch to filter the recipes from the database */}
       <div>
-        <img className='avatar' src={user.avatar}></img>
         <h1 style={{ color: 'yellow' }}>Cosmic Space</h1>
         <Button variant='outlined' sx={{ backgroundColor: '#fe9392', color: 'white', width: 100 }} onClick={() => dispatch({ type: 'GET_BREAKFAST_RECIPES' })}>Breakfast</Button>
         <Button variant='outlined' sx={{ backgroundColor: '#6e2c99', color: 'white', width: 100 }} onClick={() => dispatch({ type: 'GET_ENTREE_RECIPES' })}>Entree</Button>
         <Button variant='outlined' sx={{ backgroundColor: '#e771a2', color: 'white', width: 100 }} onClick={() => dispatch({ type: 'GET_DESERT_RECIPES' })}>Desert</Button>
         <Button variant='outlined' sx={{ backgroundColor: '#aa4985', color: 'white', width: 100 }} onClick={() => dispatch({ type: 'GET_SNACK_RECIPES' })}>Snack</Button>
         <Button variant='outlined' sx={{ backgroundColor: '#394baf', color: 'white', width: 100 }} onClick={() => dispatch({ type: 'GET_DRINK_RECIPES' })}>Drink</Button>
-        <Button variant='outlined' sx={{ backgroundColor: 'lightblue', color: 'white', width: 100 }} onClick={() => dispatch({ type: 'GET_ALL_RECIPES' })}>Clear</Button>
+        <Button variant='outlined' sx={{ backgroundColor: 'lightblue', color: 'white', width: 100 }} onClick={() => dispatch({ type: 'GET_ALL_RECIPES' })}>All</Button>
       </div>
       <div className='inputsearch'>
         <input placeholder='Search' />
@@ -47,7 +46,7 @@ function UserPage() {
         }) :
           recipes.map((recipe) => {
             return (
-              <Card sx={{ maxWidth: 300, marginLeft: 'auto', marginRight: 'auto' }} key={recipe.id}>
+              <Card sx={{ maxWidth: 300, marginLeft: 'auto', marginRight: 'auto', marginBottom: 3, marginTop: 3}} key={recipe.id}>
               <CardActionArea>
                   <CardMedia component='img' sx={{height: 150, justifyContent: 'center'}}
                   image='https://www.livewellbakeoften.com/wp-content/uploads/2021/11/Cosmic-Brownies-8.jpg' />
@@ -65,7 +64,7 @@ function UserPage() {
           })}
       </div>
       <Link to='/addrecipe'>
-        <Button variant='outlined' sx={{ backgroundColor: '', color: 'white', width: 330 }}>Add a Recipe</Button>
+        <Button variant='outlined' sx={{ backgroundColor: '', color: 'white', width: 330, marginTop: 5 }}>Add a Recipe</Button>
       </Link>
     </div>
   );

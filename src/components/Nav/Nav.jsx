@@ -36,6 +36,7 @@ function Nav() {
           About
         </Link>
       </div>
+      <img className='avatar' src={user.avatar}></img>
     </div>
   );
 }
