@@ -10,17 +10,32 @@ import AddDirections from "../DirectionsInput/DirectionInput";
 function AddRecipes() {
 
     const [category, setCategory] = useState('')
+    const [newTitle, setTitle] = useState('')
+    const [imageUrl, setImageUrl] = useState('')
+    const [newIngredients, setNewIngredients] = useState('')
+    const [newDirections, setNewDirections] = useState('')
 
     function handleCategory(event) {
         setCategory(event.target.value)
+    }
+
+    function saveRecipe (event) {
+        let newRecipe = {
+            image: imageUrl,
+            title: newTitle,
+            ingredients: newIngredients,
+            directions: newDirections,
+            category: category
+        }
+        console.log('my new recipe', newRecipe)
     }
 
 
     return (<>
         <div>
             <div className='titleAndImage'>
-                <TextField id="outlined-basic" label="Title" variant="outlined" size='small' sx={{ backgroundColor: 'lightblue', height: 40, width: 150 }} />
-                <TextField id="outlined-basic" label="Image URL" variant="outlined" size="small" sx={{ backgroundColor: 'lightblue', height: 40, width: 150}} />
+                <TextField id="outlined-basic" label="Title" variant="outlined" size='small' sx={{ backgroundColor: 'lightblue', height: 40, width: 150 }} onChange={(event) => setTitle(event.target.value)}/>
+                <TextField id="outlined-basic" label="Image URL" variant="outlined" size="small" sx={{ backgroundColor: 'lightblue', height: 40, width: 150}} onChange={(event) => setImageUrl(event.target.value)}/>
             </div>
             <Box>
                 <FormControl sx={{marginLeft: 5}}>
@@ -40,9 +55,9 @@ function AddRecipes() {
                 </FormControl>
             </Box>
         </div>
-        <AddIngredients/>
-        <AddDirections/>
-        <button>Save Recipe</button>
+        <AddIngredients getIngredients={setNewIngredients}/>
+        <AddDirections getDirections={setNewDirections}/>
+        <button onClick={saveRecipe}>Save Recipe</button>
         <Link to='/home'>
             <button>Home Screen</button>
         </Link>

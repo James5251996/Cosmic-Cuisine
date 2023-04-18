@@ -2,9 +2,10 @@ import { useState } from 'react';
 import Tesseract from 'tesseract.js';
 
 
-function AddDirections () {
-    const [ocr, setOcr] = useState('Loading...Directions');
+function AddDirections ({getDirections}) {
+    const [directionsocr, setOcr] = useState('Loading...Directions');
     const [imageData, setImageData] = useState(null);
+    getDirections = directionsocr
     
     if (imageData === null) {
         console.log(`add an image`);
@@ -35,7 +36,7 @@ function AddDirections () {
     return (<>
            <input type='file' onChange={handleImageChange} placeholder="Add Directions"/>
         {imageData ? 
-        <textarea type='text' className='IngredientInput' value={ocr}></textarea> : <p>{ocr}</p>}
+        <textarea type='text' className='IngredientInput' value={directionsocr}></textarea> : <p>{directionsocr}</p>}
     </>)
 }
 

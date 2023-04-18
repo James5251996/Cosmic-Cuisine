@@ -2,9 +2,11 @@ import '../IngredientsInput/Ingredients.css'
 import { useState } from 'react';
 import Tesseract from 'tesseract.js';
 
-function AddIngredients() {
-    const [ocr, setOcr] = useState('Loading...Ingredients');
+function AddIngredients({getIngredients}) {
+    console.log('add ingredients just loaded')
+    const [ingredientocr, setOcr] = useState('Loading...Ingredients');
     const [imageData, setImageData] = useState(null);
+    getIngredients = ingredientocr
     
     if (imageData === null) {
         console.log(`add an image`);
@@ -37,7 +39,7 @@ function AddIngredients() {
     return (<>
         <input type='file' onChange={handleImageChange} placeholder="Add Ingredients"/>
         {imageData ? 
-        <textarea type='text' className='IngredientInput' value={ocr}></textarea> : <p>{ocr}</p>}
+        <textarea type='text' className='IngredientInput' value={ingredientocr}></textarea> : <p>{ingredientocr}</p>}
     </>)
 }
 
