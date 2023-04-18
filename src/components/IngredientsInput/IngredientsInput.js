@@ -3,8 +3,9 @@ import { useState } from 'react';
 import Tesseract from 'tesseract.js';
 
 function AddIngredients() {
-    const [ocr, setOcr] = useState('Loading...');
+    const [ocr, setOcr] = useState('Loading...Ingredients');
     const [imageData, setImageData] = useState(null);
+    
     if (imageData === null) {
         console.log(`add an image`);
       } else {
@@ -14,20 +15,8 @@ function AddIngredients() {
           { logger: m => console.log(m) }
         ).then(({ data }) => {
           console.log('this is the total data:', data);
-          setOcr(data.lines)
+          setOcr(data.text)
         })
-      }
-
-      function displayLines () {
-        return(<>
-            {ocr.map(line => {
-                <ul>
-                    <li>
-                        {line.text}
-                    </li>
-                </ul>
-            })}
-        </>)
       }
     
     
@@ -48,7 +37,7 @@ function AddIngredients() {
     return (<>
         <input type='file' onChange={handleImageChange} placeholder="Add Ingredients"/>
         {imageData ? 
-        <input class='IngredientInput' value={() => displayLines}></input> : <p>...Loading...</p>}
+        <textarea type='text' className='IngredientInput' value={ocr}></textarea> : <p>{ocr}</p>}
     </>)
 }
 
