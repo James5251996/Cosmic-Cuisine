@@ -14,7 +14,7 @@ body {
   margin: 0px;
 }
 
-img {
+.avatar {
   display: inline-block;
   max-width: 10%;
 }
