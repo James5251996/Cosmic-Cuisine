@@ -1,8 +1,54 @@
 import '../IngredientsInput/Ingredients.css'
+import { useState } from 'react';
+import Tesseract from 'tesseract.js';
 
-function AddIngredients () {
+function AddIngredients() {
+    const [ocr, setOcr] = useState('Loading...');
+    const [imageData, setImageData] = useState(null);
+    if (imageData === null) {
+        console.log(`add an image`);
+      } else {
+        Tesseract.recognize(
+          imageData,
+          'eng',
+          { logger: m => console.log(m) }
+        ).then(({ data }) => {
+          console.log('this is the total data:', data);
+          setOcr(data.lines)
+        })
+      }
+
+      function displayLines () {
+        return(<>
+            {ocr.map(line => {
+                <ul>
+                    <li>
+                        {line.text}
+                    </li>
+                </ul>
+            })}
+        </>)
+      }
+    
+    
+      function handleImageChange(e) {
+        console.log('this is my file', e.target.files[0])
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const imageDataUri = reader.result;
+          console.log({ imageDataUri });
+          setImageData(imageDataUri);
+        }
+        reader.readAsDataURL(file);
+      }
+
+
     return (<>
-        <input className='IngredientInput' placeholder="Add Ingredients"></input>
+        <input type='file' onChange={handleImageChange} placeholder="Add Ingredients"/>
+        {imageData ? 
+        <input class='IngredientInput' value={() => displayLines}></input> : <p>...Loading...</p>}
     </>)
 }
 
