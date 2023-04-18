@@ -21,7 +21,7 @@ function UserPage() {
     <div className="container">
       {/* Here is where the buttons are made to create a dispatch to filter the recipes from the database */}
       <div>
-        <h1 style={{ color: 'yellow' }}>Cosmic Space</h1>
+        
         <Button variant='outlined' sx={{ backgroundColor: '#fe9392', color: 'white', width: 100 }} onClick={() => dispatch({ type: 'GET_BREAKFAST_RECIPES' })}>Breakfast</Button>
         <Button variant='outlined' sx={{ backgroundColor: '#6e2c99', color: 'white', width: 100 }} onClick={() => dispatch({ type: 'GET_ENTREE_RECIPES' })}>Entree</Button>
         <Button variant='outlined' sx={{ backgroundColor: '#e771a2', color: 'white', width: 100 }} onClick={() => dispatch({ type: 'GET_DESERT_RECIPES' })}>Desert</Button>
