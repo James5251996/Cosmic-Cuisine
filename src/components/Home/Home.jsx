@@ -8,6 +8,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { Button } from '@mui/material';
 import { color } from '@mui/system';
 import { useEffect } from 'react';
+import TextField from '@mui/material/TextField';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -31,18 +32,20 @@ function UserPage() {
         <Button variant='outlined' sx={{backgroundColor: 'purple', color: 'white', width: 100}}>Desert</Button>
         <Button variant='outlined' sx={{backgroundColor: 'green', color: 'white', width: 100}}>Snack</Button>
         <Button variant='outlined' sx={{backgroundColor: 'blue', color: 'white', width: 100}}>Drink</Button>
-        <Button variant='outlined' sx={{backgroundColor: '', color: 'white', width: 100}}>Clear</Button>
+        <Button variant='outlined' sx={{backgroundColor: 'darkpink', color: 'white', width: 100}}>Clear</Button>
       </div>
+      <input placeholder='Search'/>
       {/* Here is where i will map over the recipes in my database */}
       <div>
         {recipes.map(recipe => {
           return (<>
             <ul key={recipe.id}>
-              <li style={{color: 'white'}}>{recipe.title}</li>
+              <li style={{color: 'white'}}>{recipe.title}, {recipe.category}</li>
             </ul>
             </> )
         })}
       </div>
+      <Button variant='outlined' sx={{backgroundColor: '', color: 'white', width: 330}}>Add a Recipe</Button>
     </div>
   );
 }
