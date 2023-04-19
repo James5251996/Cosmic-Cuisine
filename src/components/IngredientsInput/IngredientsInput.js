@@ -9,24 +9,26 @@ function AddIngredients() {
   const [imageData, setImageData] = useState(null);
   const dispatch = useDispatch();
 
-  function runTesseract() {
-    if (imageData === null) {
-      console.log(`add an image`);
-    } else {
-      console.log('we made it')
-      Tesseract.recognize(
-        imageData,
-        'eng',
-        { logger: m => console.log(m) }
-      ).then(({ data }) => {
-        console.log('this is the total data:', data);
-        setOcr(data.lines)
-      })
-    }
-    // dispatch({
-    //   type: 'STORE_INGREDIENTS',
-    //   payload: ocr
-    // })
+  if (imageData === null) {
+    console.log(`add an image`);
+  } else {
+    console.log('image data:', imageData)
+    Tesseract.recognize(
+      imageData,
+      'eng',
+      { logger: m => console.log(m) }
+    ).then(({ data }) => {
+      console.log('this is the total data:', data);
+      setOcr(data.text)
+    })
+  }
+
+  function storeIngredients (event) {
+    event.preventDefault();
+    dispatch({
+      type: 'STORE_INGREDIENTS',
+      payload: ocr
+    })
   }
 
 
@@ -45,7 +47,12 @@ function AddIngredients() {
 
 
   return (<>
-    <input type='file' onChange={handleImageChange} placeholder="Add Ingredients" />
+    <div>
+      <input type='file' onChange={handleImageChange} placeholder="Add Ingredients" />
+      
+    </div>
+    <img className='pic' src={imageData}></img>
+    <button onClick={storeIngredients}>Submit Ingrediets</button>
   </>)
 }
 

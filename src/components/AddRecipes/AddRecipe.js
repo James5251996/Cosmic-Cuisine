@@ -13,9 +13,9 @@ function AddRecipes() {
     const [category, setCategory] = useState('')
     const [newTitle, setTitle] = useState('')
     const [imageUrl, setImageUrl] = useState('')
-    const [newIngredients, setNewIngredients] = useState('')
-    const [newDirections, setNewDirections] = useState('')
     const ingredients = useSelector(store => store.addIngredientsReducer)
+    const allIngredients = []
+    
 
     function handleCategory(event) {
         setCategory(event.target.value)
@@ -25,12 +25,12 @@ function AddRecipes() {
         let newRecipe = {
             image: imageUrl,
             title: newTitle,
-            ingredients: newIngredients,
-            directions: newDirections,
+            ingredients: ingredients,
+            // directions: newDirections,
             category: category
         }
         console.log('my new recipe', newRecipe)
-        console.log('my ingredients to add', ingredients)
+        console.log('my ingredients to add', allIngredients)
     }
 
 
@@ -59,6 +59,9 @@ function AddRecipes() {
             </Box>
         </div>
         <AddIngredients/>
+    
+            <textarea value={ingredients}/>
+\
         <AddDirections/>
         <button onClick={saveRecipe}>Save Recipe</button>
         <Link to='/home'>
