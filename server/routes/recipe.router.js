@@ -123,6 +123,7 @@ router.post('/', (req, res) => {
     newRecipe.category,
     user
   ]
+  console.log('my query values', queryValues)
 
   pool.query(sqlText, queryValues)
   .then(() => {

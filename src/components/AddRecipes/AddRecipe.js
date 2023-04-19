@@ -4,7 +4,7 @@ import '../AddRecipes/AddRecipe.css'
 import AddIngredients from "../IngredientsInput/IngredientsInput";
 import { useState } from "react";
 import AddDirections from "../DirectionsInput/DirectionInput";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 
 
@@ -13,24 +13,31 @@ function AddRecipes() {
     const [category, setCategory] = useState('')
     const [newTitle, setTitle] = useState('')
     const [imageUrl, setImageUrl] = useState('')
-    const [newIngredients, setNewIngredients] = useState('')
-    const [newDirections, setNewDirections] = useState('')
     const ingredients = useSelector(store => store.addIngredientsReducer)
+    const directions = useSelector(store => store.addDirectionsReducer)
+    const dispatch = useDispatch()
+    
 
     function handleCategory(event) {
         setCategory(event.target.value)
     }
 
     function saveRecipe (event) {
+        event.preventDefault()
         let newRecipe = {
             image: imageUrl,
             title: newTitle,
-            ingredients: newIngredients,
-            directions: newDirections,
+            ingredients: ingredients,
+            directions: directions,
             category: category
         }
         console.log('my new recipe', newRecipe)
-        console.log('my ingredients to add', ingredients)
+    
+        // here will be a dispatch to a saga to post the recipie to the database.
+        dispatch({
+            type: 'POST_RECIPE',
+            payload: newRecipe
+        })
     }
 
 
@@ -59,7 +66,9 @@ function AddRecipes() {
             </Box>
         </div>
         <AddIngredients/>
+        <p>{ingredients}</p>
         <AddDirections/>
+        <p>{directions}</p>
         <button onClick={saveRecipe}>Save Recipe</button>
         <Link to='/home'>
             <button>Home Screen</button>

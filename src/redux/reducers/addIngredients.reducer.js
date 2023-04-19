@@ -1,6 +1,6 @@
-const addIngredientsReducer = (state = [], action) => {
+const addIngredientsReducer = (state = '', action) => {
     if (action.type === 'STORE_INGREDIENTS') {
-        return [...state, ...action.payload]
+        return action.payload
     } else
     return state
 }
