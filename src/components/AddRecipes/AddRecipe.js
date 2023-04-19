@@ -4,6 +4,7 @@ import '../AddRecipes/AddRecipe.css'
 import AddIngredients from "../IngredientsInput/IngredientsInput";
 import { useState } from "react";
 import AddDirections from "../DirectionsInput/DirectionInput";
+import { useSelector } from "react-redux";
 
 
 
@@ -14,6 +15,7 @@ function AddRecipes() {
     const [imageUrl, setImageUrl] = useState('')
     const [newIngredients, setNewIngredients] = useState('')
     const [newDirections, setNewDirections] = useState('')
+    const ingredients = useSelector(store => store.addIngredientsReducer)
 
     function handleCategory(event) {
         setCategory(event.target.value)
@@ -28,6 +30,7 @@ function AddRecipes() {
             category: category
         }
         console.log('my new recipe', newRecipe)
+        console.log('my ingredients to add', ingredients)
     }
 
 
@@ -55,8 +58,8 @@ function AddRecipes() {
                 </FormControl>
             </Box>
         </div>
-        <AddIngredients getIngredients={setNewIngredients}/>
-        <AddDirections getDirections={setNewDirections}/>
+        <AddIngredients/>
+        <AddDirections/>
         <button onClick={saveRecipe}>Save Recipe</button>
         <Link to='/home'>
             <button>Home Screen</button>
