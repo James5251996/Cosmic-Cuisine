@@ -4,7 +4,7 @@ import '../AddRecipes/AddRecipe.css'
 import AddIngredients from "../IngredientsInput/IngredientsInput";
 import { useState } from "react";
 import AddDirections from "../DirectionsInput/DirectionInput";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 
 
@@ -14,7 +14,8 @@ function AddRecipes() {
     const [newTitle, setTitle] = useState('')
     const [imageUrl, setImageUrl] = useState('')
     const ingredients = useSelector(store => store.addIngredientsReducer)
-    const allIngredients = []
+    const directions = useSelector(store => store.addDirectionsReducer)
+    const dispatch = useDispatch()
     
 
     function handleCategory(event) {
@@ -22,15 +23,21 @@ function AddRecipes() {
     }
 
     function saveRecipe (event) {
+        event.preventDefault()
         let newRecipe = {
             image: imageUrl,
             title: newTitle,
             ingredients: ingredients,
-            // directions: newDirections,
+            directions: directions,
             category: category
         }
         console.log('my new recipe', newRecipe)
-        console.log('my ingredients to add', allIngredients)
+    
+        // here will be a dispatch to a saga to post the recipie to the database.
+        dispatch({
+            type: 'POST_RECIPE',
+            payload: newRecipe
+        })
     }
 
 
@@ -59,10 +66,9 @@ function AddRecipes() {
             </Box>
         </div>
         <AddIngredients/>
-    
-            <textarea value={ingredients}/>
-\
+        <p>{ingredients}</p>
         <AddDirections/>
+        <p>{directions}</p>
         <button onClick={saveRecipe}>Save Recipe</button>
         <Link to='/home'>
             <button>Home Screen</button>

@@ -49,9 +49,9 @@ function AddIngredients() {
   return (<>
     <div>
       <input type='file' onChange={handleImageChange} placeholder="Add Ingredients" />
-      
     </div>
-    <img className='pic' src={imageData}></img>
+    {imageData ?
+    <img className='pic' src={imageData}></img> : <p>Add Ingredients</p>}
     <button onClick={storeIngredients}>Submit Ingrediets</button>
   </>)
 }

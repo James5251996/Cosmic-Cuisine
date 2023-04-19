@@ -1,0 +1,14 @@
+.IngredientInput {
+    margin-left: auto;
+    margin-right: auto;
+    height: 500px;
+    width: 300px;
+    text-align: center;
+}
+p{ 
+    color: white;
+}
+
+.pic {
+    height: 300px;
+}
