@@ -2,6 +2,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* addRecipe (action) {
+    console.log('my action payload', action.payload)
     try {
         yield axios.post('/api/recipes', action.payload)
     } catch (error) {

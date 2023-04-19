@@ -18,6 +18,6 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     recipeSaga(),
-    postRecipeSaga,
+    postRecipeSaga(),
   ]);
 }
