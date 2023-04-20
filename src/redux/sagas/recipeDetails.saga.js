@@ -14,9 +14,21 @@ function* getRecipeDetails (action) {
 }
 
 
+function* editRecipe(action) {
+   console.log(action.payload)
+   // try{
+   //    yield axios.put(`/api/recipes/${action.payload.id}`, action.payload)
+      
+   // }catch (error) {
+   //    console.log('error in my editRecipe in recipesDetails Saga', error)
+   // }
+}
+
+
 
 
 function* detailsSaga() {
-    yield takeLatest('GET_RECIPE_DETAILS', getRecipeDetails)
+    yield takeLatest('GET_RECIPE_DETAILS', getRecipeDetails);
+    yield takeLatest('UPDATE_RECIPE', editRecipe);
 }
 export default detailsSaga;
