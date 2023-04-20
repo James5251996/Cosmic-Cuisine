@@ -3,7 +3,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Card, CardContent, CardMedia, Typography, CardActionArea } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { HashRouter as Router, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Route, Link, useHistory } from "react-router-dom";
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -11,11 +11,23 @@ function UserPage() {
   const recipes = useSelector((store) => store.recipeReducer)
   const dispatch = useDispatch();
   const [toggleView, setToggleView] = useState(false)
+  const history = useHistory();
 
 
   useEffect(() => {
     dispatch({ type: 'GET_ALL_RECIPES' })
   }, []);
+
+  function viewDetails (recipeID) {
+    console.log('view details was clicked')
+    console.log('this is my recipe id:', recipeID)
+
+    dispatch({
+      type: "GET_RECIPE_DETAILS",
+      payload: recipeID
+    })
+    history.push('/recipes/:id')
+  }
 
   return (
     <div className="container">
@@ -37,17 +49,15 @@ function UserPage() {
       </div>
       <div>
 
-        {toggleView ? recipes.map((recipe, x) => {
+        {toggleView ? recipes.map((recipe) => {
           return (<>
-            <ul key={x}>
-              <li key={recipe.id} style={{ color: 'white' }}>{recipe.title}, {recipe.category}</li>
-            </ul>
+              <li key={recipe.id} style={{ color: 'white', padding: 10 }} onClick={() => viewDetails(recipe.id)}>{recipe.title}, {recipe.category}</li>
           </>)
         }) :
           recipes.map((recipe) => {
             return (
               <Card sx={{ maxWidth: 300, marginLeft: 'auto', marginRight: 'auto', marginBottom: 3, marginTop: 3}} key={recipe.id}>
-              <CardActionArea>
+              <CardActionArea onClick={() => viewDetails(recipe.id)}>
                   <CardMedia component='img' sx={{height: 150, justifyContent: 'center'}}
                   image='https://www.livewellbakeoften.com/wp-content/uploads/2021/11/Cosmic-Brownies-8.jpg' />
                 <CardContent>

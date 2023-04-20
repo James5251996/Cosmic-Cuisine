@@ -135,4 +135,19 @@ router.post('/', (req, res) => {
 
 });
 
+// here is my get for a specific recipe to view that recipes data
+router.get('/:id', (req, res) => {
+  const sqlText = `SELECT * FROM recipes
+  WHERE id = $1`
+
+  pool.query(sqlText, [req.params.id])
+  .then((results) => {
+    res.send(results.rows)
+  }).catch((error) => {
+    console.log('error in get details server request', error)
+    res.sendStatus(500)
+  })
+
+})
+
 module.exports = router;

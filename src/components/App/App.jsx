@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
 import AddRecipes from '../AddRecipes/AddRecipe';
+import GetRecipesDetails from '../RecipeDetails/RecipeDetails';
 
 function App() {
   const dispatch = useDispatch();
@@ -106,6 +107,10 @@ function App() {
           {/* route set up to take you to the add a recipe page */}
           <Route path='/addrecipe'>
             <AddRecipes/>
+          </Route>
+
+          <Route path='/recipes/:id'>
+            <GetRecipesDetails/>
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
