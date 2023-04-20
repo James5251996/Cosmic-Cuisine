@@ -70,7 +70,7 @@ function AddRecipes() {
         <AddDirections/>
         <p>{directions}</p>
         <button onClick={saveRecipe}>Save Recipe</button>
-        <Link to='/home'>
+        <Link to='/home' >
             <button>Home Screen</button>
         </Link>
     </>)

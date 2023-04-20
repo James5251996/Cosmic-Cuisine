@@ -48,7 +48,6 @@ function UserPage() {
         <Button variant='outlined' sx={{ width: 175, height: 40, color: 'white', borderColor: 'yellow' }} onClick={() => setToggleView(!toggleView)}>Card/List View</Button>
       </div>
       <div>
-
         {toggleView ? recipes.map((recipe) => {
           return (<>
               <li key={recipe.id} style={{ color: 'white', padding: 10 }} onClick={() => viewDetails(recipe.id)}>{recipe.title}, {recipe.category}</li>
@@ -62,7 +61,7 @@ function UserPage() {
                   image='https://www.livewellbakeoften.com/wp-content/uploads/2021/11/Cosmic-Brownies-8.jpg' />
                 <CardContent>
                   <Typography gutterBottom variant='h5' component='div'>
-                    {recipe.title}
+                    {recipe.title} 
                   </Typography>
                   <Typography>
                     {recipe.category}

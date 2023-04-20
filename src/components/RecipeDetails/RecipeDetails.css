@@ -1,3 +1,19 @@
-div {
+.test {
     color: white;
+}
+
+.detailsImage {
+    height: 200px;
+}
+
+.smallInputs {
+    height: 30px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.largeInputs {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 10px;
 }
