@@ -51,10 +51,17 @@ function GetRecipesDetails() {
                 <Box>
                     <textarea className="smallInputs">{details.title}</textarea>
                     <textarea className="smallInputs">{details.image}</textarea>
-                    <textarea className="smallInputs">{details.category}</textarea>
+                    <select className="smallInputs" name="category">
+                        <option>Choose Category</option>
+                        <option value='Breakfast'>Breakfast</option>
+                        <option value='Entree'>Entree</option>
+                        <option value='Dessert'>Dessert</option>
+                        <option value='Snack'>Snack</option>
+                        <option value='Drink'>Drink</option>
+                    </select>
                     <textarea className="largeInputs" onChange={(event) => setNewIngredients(event.target.value)}>{details.ingredients}</textarea>
                     <textarea className="largeInputs" onChange={(event) => setNewDirections(event.target.value)}>{details.directions}</textarea>
-                    <button onClick={updateRecipe}>Close Modal</button>
+                    <button onClick={updateRecipe}>Save Changes</button>
                 </Box>
             </Modal>
         </div>

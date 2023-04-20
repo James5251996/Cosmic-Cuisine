@@ -8,12 +8,18 @@
 
 .smallInputs {
     height: 30px;
-    width: 100%;
+    width: 350px;
     margin-bottom: 10px;
+    background-color: #e771a2;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .largeInputs {
-    width: 100%;
+    width: 350px;
     height: 200px;
     margin-bottom: 10px;
+    background-color: #e771a2;
+    margin-left: 10px;
+    margin-right: 10px;
 }

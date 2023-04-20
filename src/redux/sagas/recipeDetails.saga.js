@@ -14,6 +14,8 @@ function* getRecipeDetails (action) {
 }
 
 
+
+
 function* detailsSaga() {
     yield takeLatest('GET_RECIPE_DETAILS', getRecipeDetails)
 }
