@@ -150,4 +150,29 @@ router.get('/:id', (req, res) => {
 
 })
 
+
+// here is my put request to update the recipe on the database
+router.put('/:id', (req, res) => {
+  const recipeID = req.params.id
+  const updateRecipe = [
+    req.body.title,
+    req.body.image,
+    req.body.category,
+    req.body.ingredients,
+    req.body.directions,
+    recipeID
+  ]
+  const sqlText = `UPDATE recipes SET title = $1, image = $2, category = $3, ingredients = $4, directions = $5
+  WHERE id = $6`
+  pool.query(sqlText, updateRecipe)
+  .then(results => {
+    res.sendStatus(200)
+  }).catch((error) => {
+    console.log('error in my recipe router put:', error)
+    res.sendStatus(500)
+  })
+
+
+})
+
 module.exports = router;

@@ -15,13 +15,14 @@ function* getRecipeDetails (action) {
 
 
 function* editRecipe(action) {
-   console.log(action.payload)
-   // try{
-   //    yield axios.put(`/api/recipes/${action.payload.id}`, action.payload)
+   //console.log('this is my payload for my put', action.payload)
+   try{
+      yield axios.put(`/api/recipes/${action.payload.id}`, action.payload)
+      yield put({type: 'VIEW_DETAILS', payload: action.payload.id})
       
-   // }catch (error) {
-   //    console.log('error in my editRecipe in recipesDetails Saga', error)
-   // }
+   }catch (error) {
+      console.log('error in my editRecipe in recipesDetails Saga', error)
+   }
 }
 
 

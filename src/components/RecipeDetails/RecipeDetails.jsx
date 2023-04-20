@@ -7,14 +7,22 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 
 function GetRecipesDetails() {
     const details = useSelector(store => store.viewRecipeDetails)
     const dispatch = useDispatch();
+    const history = useHistory();
 
-    console.log('stuff from my details store', details);
+    //console.log('stuff from my details store', details);
     const [open, setOpen] = useState(false)
+    const [openAlert, setOpenAlert] = useState(false)
     const [category, setCategory] = useState("")
     const [newTitle, setTitle] = useState("")
     const [imageUrl, setImageUrl] = useState("")
@@ -36,12 +44,14 @@ function GetRecipesDetails() {
             directions: newDirections,
             id: idForRecipe
         }
-        console.log('this is my edited recipe', editedRecipe);
+        //console.log('this is my edited recipe', editedRecipe);
         dispatch({
             type: 'UPDATE_RECIPE',
             payload: editedRecipe
         })
+    
         setOpen(false)
+        history.push('/home')
     }
 
     const updateEditStates = () => {
@@ -52,6 +62,11 @@ function GetRecipesDetails() {
         setNewIngredients(details.ingredients)
         updateRecipe(details.id)
 
+    }
+
+    function DeleteRecipe () {
+        console.log('this will be my delete dispactch and send back to home screen')
+        setOpenAlert(false)
     }
 
     return (<>
@@ -80,6 +95,15 @@ function GetRecipesDetails() {
                         <textarea className="largeInputs" value={newIngredients} onChange={(event) => setNewIngredients(event.target.value)}></textarea>
                         <textarea className="largeInputs" value={newDirections} onChange={(event) => setNewDirections(event.target.value)}></textarea>
                         <button onClick={sendDispatch}>Save Changes</button>
+                        <Button onClick={() => setOpenAlert(true)}>Delete Recipe</Button>
+                        <Dialog
+                        open={openAlert}>
+                            <DialogContent>
+                                Are you sure you want to Delete?
+                            </DialogContent>
+                            <Button onClick={() => DeleteRecipe()}>Yes</Button>
+                            <Button onClick={() => setOpenAlert(false)}>No</Button>
+                        </Dialog>
                     </Box>
                 </Modal>
             </div>

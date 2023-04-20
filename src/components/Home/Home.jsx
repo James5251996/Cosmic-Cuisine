@@ -58,7 +58,7 @@ function UserPage() {
               <Card sx={{ maxWidth: 300, marginLeft: 'auto', marginRight: 'auto', marginBottom: 3, marginTop: 3}} key={recipe.id}>
               <CardActionArea onClick={() => viewDetails(recipe.id)}>
                   <CardMedia component='img' sx={{height: 150, justifyContent: 'center'}}
-                  image='https://www.livewellbakeoften.com/wp-content/uploads/2021/11/Cosmic-Brownies-8.jpg' />
+                  image={recipe.image} />
                 <CardContent>
                   <Typography gutterBottom variant='h5' component='div'>
                     {recipe.title} 
