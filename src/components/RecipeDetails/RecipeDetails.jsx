@@ -44,7 +44,7 @@ function GetRecipesDetails() {
             directions: newDirections,
             id: idForRecipe
         }
-        //console.log('this is my edited recipe', editedRecipe);
+        console.log('this is my edited recipe', editedRecipe);
         dispatch({
             type: 'UPDATE_RECIPE',
             payload: editedRecipe

@@ -59,7 +59,7 @@ router.get('/entree', rejectUnauthenticated, (req, res) => {
 router.get('/desert', rejectUnauthenticated, (req, res) => {
   // GET route code here
   const sqlText = `SELECT * FROM recipes 
-  WHERE user_id = $1 AND category = 'Desert' ORDER BY title ASC;`
+  WHERE user_id = $1 AND category = 'Dessert' ORDER BY title ASC;`
   const user = req.user.id;
   //console.log('here is the user id', user)
 
