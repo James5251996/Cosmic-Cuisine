@@ -64,9 +64,15 @@ function GetRecipesDetails() {
 
     }
 
+    // this is the function that will make the dispatch call to my delete request.
     function DeleteRecipe () {
         console.log('this will be my delete dispactch and send back to home screen')
         setOpenAlert(false)
+        dispatch ({
+            type: 'DELETE_RECIPE',
+            payload: idForRecipe
+        })
+        history.push('/home')
     }
 
     return (<>

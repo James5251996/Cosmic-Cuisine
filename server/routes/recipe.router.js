@@ -175,4 +175,18 @@ router.put('/:id', (req, res) => {
 
 })
 
+// this is my server request to delete the recipe from the database.
+router.delete('/:id', (req, res) => {
+  const recipeToDelete = req.params.id
+  const sqlText = `DELETE FROM recipes WHERE id = $1`
+
+  pool.query(sqlText, [recipeToDelete])
+  .then(() => {
+    res.sendStatus(200)
+  }).catch((error) => {
+    console.log(`error in recipe router delete request ${error}`);
+  })
+
+})
+
 module.exports = router;

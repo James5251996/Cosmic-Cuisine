@@ -25,11 +25,21 @@ function* editRecipe(action) {
    }
 }
 
+function* deleteRecipe (action) {
+   console.log('this is is the delete saga recipe ID:', action.payload)
+   try {
+      yield axios.delete(`/api/recipes/${action.payload}`)
+   } catch (error) {
+      console.log(`error in recipe details saga delete request ${error}`);
+   }
+}
+
 
 
 
 function* detailsSaga() {
     yield takeLatest('GET_RECIPE_DETAILS', getRecipeDetails);
     yield takeLatest('UPDATE_RECIPE', editRecipe);
+    yield takeLatest('DELETE_RECIPE', deleteRecipe);
 }
 export default detailsSaga;
