@@ -14,7 +14,6 @@ function UserPage() {
   const dispatch = useDispatch();
   const [toggleView, setToggleView] = useState(false)
   const history = useHistory();
-  const [recipeSearched, setRecipeSearched] = useState()
 
 
   useEffect(() => {

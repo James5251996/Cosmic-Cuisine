@@ -16,7 +16,7 @@ function AddDirections() {
     Tesseract.recognize(
       imageData,
       'eng',
-      { logger: m => console.log(m) },
+     // { logger: m => console.log(m) },
     ).then(({ data }) => {
       console.log('this is the total data:', data);
       setOcr(data.text)
