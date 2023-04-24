@@ -189,4 +189,17 @@ router.delete('/:id', (req, res) => {
 
 })
 
+router.get('/search/:recipesearch', (req, res) => {
+  console.log('this is what i want to search for:', req.params.recipesearch)
+  const sqlText = `SELECT * FROM recipes WHERE title ILIKE '%$1%';`
+  pool.query(sqlText, [req.params.recipesearch])
+  .then((results) => {
+    res.sendStatus(results.rows)
+    console.log('here are the results from the search', results.rows)
+  }).catch((error) => {
+    res.sendStatus(500);
+    console.log('error in mhy search requrest', error)
+  })
+})
+
 module.exports = router;
