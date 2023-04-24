@@ -8,6 +8,7 @@ function AddDirections() {
   const [ocr, setOcr] = useState('Loading...Directions');
   const [imageData, setImageData] = useState(null);
   const dispatch = useDispatch();
+  const [progress, setProgress] = useState(false)
 
   if (imageData === null) {
     console.log(`add an image`);
@@ -15,10 +16,12 @@ function AddDirections() {
     Tesseract.recognize(
       imageData,
       'eng',
-      { logger: m => console.log(m) }
+      { logger: m => console.log(m) },
     ).then(({ data }) => {
       console.log('this is the total data:', data);
       setOcr(data.text)
+      setProgress(true)
+      console.log('current progress', progress)
     })
   }
 
@@ -49,7 +52,7 @@ function AddDirections() {
     </div>
     {imageData ?
     <img className='pic' src={imageData}></img> : <p>Add Directions</p>}
-    <button onClick={storeDirections}>Submit Directions</button>
+     {progress ? <button onClick={storeDirections}>Submit Ingrediets</button>: <p>Loading Directions</p>}
   </>)
 }
 

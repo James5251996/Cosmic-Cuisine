@@ -2,24 +2,28 @@ import '../IngredientsInput/Ingredients.css'
 import { useState } from 'react';
 import Tesseract from 'tesseract.js';
 import { useDispatch, useSelector } from 'react-redux';
+import LinearProgress from '@mui/material/LinearProgress';
 
 function AddIngredients() {
   console.log('add ingredients just loaded')
   const [ocr, setOcr] = useState('Loading...Ingredients');
   const [imageData, setImageData] = useState(null);
   const dispatch = useDispatch();
+  const [progress, setProgress] = useState(false)
 
   if (imageData === null) {
     console.log(`add an image`);
   } else {
-    console.log('image data:', imageData)
+    //console.log('image data:', imageData)
     Tesseract.recognize(
       imageData,
       'eng',
-      { logger: m => console.log(m) }
+      { logger: m => console.log(m) },
     ).then(({ data }) => {
       console.log('this is the total data:', data);
       setOcr(data.text)
+      setProgress(true)
+      console.log('current progress', progress)
     })
   }
 
@@ -52,7 +56,7 @@ function AddIngredients() {
     </div>
     {imageData ?
     <img className='pic' src={imageData}></img> : <p>Add Ingredients</p>}
-    <button onClick={storeIngredients}>Submit Ingrediets</button>
+    {progress ? <button onClick={storeIngredients}>Submit Ingrediets</button>: <p>Loading Ingredients</p>}
   </>)
 }
 

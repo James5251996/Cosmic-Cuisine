@@ -5,7 +5,7 @@ import { Button, Card, CardContent, CardMedia, Typography, CardActionArea } from
 import { useEffect, useState } from 'react';
 import { HashRouter as Router, Route, Link, useHistory } from "react-router-dom";
 import '../Home/Home.css'
-import { actionChannel } from 'redux-saga/effects';
+
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -14,7 +14,7 @@ function UserPage() {
   const dispatch = useDispatch();
   const [toggleView, setToggleView] = useState(false)
   const history = useHistory();
-  const [recipeSearched, setRecipeSearched] = useState('')
+  const [recipeSearched, setRecipeSearched] = useState()
 
 
   useEffect(() => {
@@ -33,13 +33,14 @@ function UserPage() {
   }
 
   function searchRecipes (event) {
+    console.log("Event Value:", event.target.value)
     event.preventDefault();
     // this will be the function that will make a dispatch call to serach through the recipes
     //console.log('this is a test to see if this appears every time a letter is typed', recipeSearched)
-    setRecipeSearched(event.target.value)
+   // setRecipeSearched(event.target.value)
     dispatch({
       type: 'SEARCH_RECIPE',
-      payload: recipeSearched
+      payload: event.target.value
     })
 
   }
@@ -56,7 +57,7 @@ function UserPage() {
         <Button variant='outlined' sx={{ backgroundColor: '#e771a2', color: 'white', width: 100 }} onClick={() => dispatch({ type: 'GET_DESERT_RECIPES' })}>Dessert</Button>
         <Button variant='outlined' sx={{ backgroundColor: '#aa4985', color: 'white', width: 100 }} onClick={() => dispatch({ type: 'GET_SNACK_RECIPES' })}>Snack</Button>
         <Button variant='outlined' sx={{ backgroundColor: '#394baf', color: 'white', width: 100 }} onClick={() => dispatch({ type: 'GET_DRINK_RECIPES' })}>Drink</Button>
-        <Button variant='outlined' sx={{ backgroundColor: 'lightblue', color: 'white', width: 100 }} onClick={() => dispatch({ type: 'GET_ALL_RECIPES' })}>All</Button>
+        <Button variant='outlined' sx={{ backgroundColor: 'lightblue', color: 'white', width: 100 }} onClick={() => dispatch({ type: 'GET_ALL_RECIPES' })}>Clear</Button>
       </div>
       <div className='inputsearch'>
         <input placeholder='Search' onChange={searchRecipes} />
