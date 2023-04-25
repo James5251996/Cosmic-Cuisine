@@ -11,7 +11,7 @@ function AddDirections() {
   const [imageData, setImageData] = useState('');
   const dispatch = useDispatch();
   const [progress, setProgress] = useState(false)
-  const [ocr, setOcr] = useState('');
+  const [ocr, setOcr] = useState('Choose Image for Directions');
   const [loadingBar, setLoadingBar] = useState(false)
 
 
