@@ -2,30 +2,20 @@ import { useState } from 'react';
 import Tesseract from 'tesseract.js';
 import '../DirectionsInput/Directions.css'
 import { useDispatch } from 'react-redux';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 
 function AddDirections() {
-  const [ocr, setOcr] = useState('Loading...Directions');
-  const [imageData, setImageData] = useState(null);
+  //const [ocr, setOcr] = useState('Loading...Directions');
+  const [imageData, setImageData] = useState('');
   const dispatch = useDispatch();
   const [progress, setProgress] = useState(false)
+  const [ocr, setOcr] = useState('');
+  const [loadingBar, setLoadingBar] = useState(false)
 
-  if (imageData === null) {
-    console.log(`add an image`);
-  } else {
-    Tesseract.recognize(
-      imageData,
-      'eng',
-     // { logger: m => console.log(m) },
-    ).then(({ data }) => {
-      console.log('this is the total data:', data);
-      setOcr(data.text)
-      setProgress(true)
-      console.log('current progress', progress)
-    })
-  }
 
-  function storeDirections (event) {
+  function storeDirections(event) {
     event.preventDefault();
     dispatch({
       type: 'STORE_DIRECTIONS',
@@ -34,25 +24,35 @@ function AddDirections() {
   }
 
 
-  function handleImageChange(e) {
-    console.log('this is my file', e.target.files[0])
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const imageDataUri = reader.result;
-      console.log({ imageDataUri });
-      setImageData(imageDataUri);
+
+
+  const doOCR = async (e) => {
+    setLoadingBar(true)
+    setOcr('Recognizing...');
+    console.log('this is my type:', typeof (e.target.files[0].name))
+    setImageData(e.target.files[0].name)
+    try {
+      const result = await Tesseract.recognize(
+        e.target.files[0],
+        'eng',
+        { logger: (m) => console.log(m) },
+      );
+      setOcr(result.data.text);
+      setProgress(true)
+      setLoadingBar(false)
+    } catch (err) {
+      console.error('Error during OCR:', err);
     }
-    reader.readAsDataURL(file);
-  }
+  };
+
+
+
   return (<>
     <div>
-      <input type='file' onChange={handleImageChange} placeholder="Add Directions" />
+      <input type='file' onChange={doOCR} placeholder="Add Directions" />
     </div>
-    {imageData ?
-    <img className='pic' src={imageData}></img> : <p>Add Directions</p>}
-     {progress ? <button onClick={storeDirections}>Submit Ingrediets</button>: <p>Loading Directions</p>}
+    {loadingBar ? <CircularProgress color='secondary' /> : <p>{ocr}</p>}
+    {progress ? <button onClick={storeDirections}>Submit Ingrediets</button> : <p></p>}
   </>)
 }
 
