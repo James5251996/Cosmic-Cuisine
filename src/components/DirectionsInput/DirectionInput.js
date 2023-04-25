@@ -23,9 +23,6 @@ function AddDirections() {
     })
   }
 
-
-
-
   const doOCR = async (e) => {
     setLoadingBar(true)
     setOcr('Recognizing...');
@@ -44,8 +41,6 @@ function AddDirections() {
       console.error('Error during OCR:', err);
     }
   };
-
-
 
   return (<>
     <div>

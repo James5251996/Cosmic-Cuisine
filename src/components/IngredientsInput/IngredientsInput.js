@@ -32,17 +32,13 @@ function AddIngredients() {
     }
   };
 
-  function storeIngredients (event) {
+  function storeIngredients(event) {
     event.preventDefault();
     dispatch({
       type: 'STORE_INGREDIENTS',
       payload: ocr
     })
   }
-
-
-
-
 
   return (<>
     <div>
