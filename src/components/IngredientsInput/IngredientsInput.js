@@ -6,13 +6,17 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import * as React from 'react';
 
 function AddIngredients() {
-  //console.log('add ingredients just loaded')
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
   const [ocr, setOcr] = useState('Choose Image for Ingredients');
   const dispatch = useDispatch();
   const [progress, setProgress] = useState(false)
   const [loadingBar, setLoadingBar] = useState(false)
+  const [openSnackBar, setOpenSnackBar] = useState(false)
 
 
   const doOCR = async (e) => {
@@ -39,16 +43,30 @@ function AddIngredients() {
       payload: ocr
     })
     setProgress(false)
+    setOpenSnackBar(true)
   }
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenSnackBar(false);
+  };
 
   return (<>
     <div>
       <input type='file' onChange={doOCR} placeholder="Add Ingredients" />
     </div>
-    {loadingBar ? <CircularProgress color='secondary' /> : <textarea color='warning' placeholder='Ingredients' value={ocr} onChange={(event) => setOcr(event.target.value)}/>}
+    {loadingBar ? <CircularProgress sx={{ml: 20}} color='secondary' /> : <textarea color='warning' placeholder='Ingredients' value={ocr} onChange={(event) => setOcr(event.target.value)}/>}
     {progress ? <Button sx={{ml: 10, backgroundColor: 'lightblue', color: 'black'}} className='submitBtn' variant='contained' onClick={storeIngredients}>Submit Ingredients</Button> 
     : <Button sx={{ml: 10, backgroundColor: 'lightblue', color: 'black'}} disabled variant='contained' >Submit Ingredients</Button>}
-
+  <Snackbar open={openSnackBar} autoHideDuration={3000} onClose={handleClose}>
+      <Alert onClose={handleClose} severity="success" sx={{ mb: 5 ,width: '100%' }}>
+        Submission Accepted
+      </Alert>
+    </Snackbar>
+  
   </>)
 }
 
