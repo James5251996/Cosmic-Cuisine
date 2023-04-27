@@ -3,16 +3,13 @@ import '../RecipeDetails/RecipeDetails.css'
 import { HashRouter as Router, Route, Link } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+
 
 
 
@@ -50,7 +47,7 @@ function GetRecipesDetails() {
             type: 'UPDATE_RECIPE',
             payload: editedRecipe
         })
-    
+
         setOpen(false)
         history.push('/home')
     }
@@ -66,10 +63,10 @@ function GetRecipesDetails() {
     }
 
     // this is the function that will make the dispatch call to my delete request.
-    function DeleteRecipe () {
+    function DeleteRecipe() {
         console.log('this will be my delete dispactch and send back to home screen')
         setOpenAlert(false)
-        dispatch ({
+        dispatch({
             type: 'DELETE_RECIPE',
             payload: idForRecipe
         })
@@ -78,14 +75,17 @@ function GetRecipesDetails() {
 
     return (<>
         {details && (<>
-            <div className="test">{details.title}</div>
-            <img className='detailsImage' src={details.image}></img>
-            <div className="test">{details.ingredients}</div>
+            <h3 className="recipeTitle">{details.title}</h3>
+            <div className="myGridForRecipeDetails">
+                <img className='recipeImage' src={details.image}></img>
+                <textarea className="recipeIngredients" value={details.ingredients}></textarea>
+            </div>
             <br></br>
-            <div className="test">{details.directions}</div>
+            <h3 className="detailDirections">Directions:</h3>
+            <div className="recipeDirections">{details.directions}</div>
 
             <div>
-                <Button sx={{ backgroundColor: 'red', color: 'white' }} onClick={() => updateEditStates()}>Edit Recipe</Button>
+                <Button sx={{ backgroundColor: 'lightblue', color: 'black', width: 300, ml: 4, mr: 5, mt: 5 }} onClick={() => updateEditStates()}>Edit Recipe</Button>
                 <Modal
                     open={open}>
                     <Box>
@@ -104,7 +104,7 @@ function GetRecipesDetails() {
                         <button onClick={sendDispatch}>Save Changes</button>
                         <Button onClick={() => setOpenAlert(true)}>Delete Recipe</Button>
                         <Dialog
-                        open={openAlert}>
+                            open={openAlert}>
                             <DialogContent>
                                 Are you sure you want to Delete?
                             </DialogContent>
@@ -116,7 +116,7 @@ function GetRecipesDetails() {
             </div>
         </>)}
         <Link to='/home'>
-            <button>Back to Home</button>
+            <button className="homeBtn">Back to Home</button>
         </Link>
 
     </>)

@@ -1,9 +1,28 @@
-.test {
+.recipeTitle {
     color: white;
 }
 
-.detailsImage {
+.recipeImage {
     height: 200px;
+    width: 150px;
+
+}
+
+.recipeIngredients {
+    color: white;
+
+}
+.recipeDirections {
+    color: white;
+
+}
+
+.myGridForRecipeDetails {
+    display: flex;
+}
+
+.detailDirections {
+    color: white;
 }
 
 .smallInputs {
