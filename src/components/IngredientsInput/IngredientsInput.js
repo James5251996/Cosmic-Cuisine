@@ -60,7 +60,7 @@ function AddIngredients() {
     </div>
     {loadingBar ? <CircularProgress sx={{ml: 20}} color='secondary' /> : <textarea color='warning' placeholder='Ingredients' value={ocr} onChange={(event) => setOcr(event.target.value)}/>}
     {progress ? <Button sx={{ml: 10, backgroundColor: 'lightblue', color: 'black'}} className='submitBtn' variant='contained' onClick={storeIngredients}>Submit Ingredients</Button> 
-    : <Button sx={{ml: 10, backgroundColor: 'lightblue', color: 'black'}} disabled variant='contained' >Submit Ingredients</Button>}
+    : <p></p>}
   <Snackbar open={openSnackBar} autoHideDuration={3000} onClose={handleClose}>
       <Alert onClose={handleClose} severity="success" sx={{ mb: 5 ,width: '100%' }}>
         Submission Accepted

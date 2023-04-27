@@ -5,6 +5,7 @@ import AddIngredients from "../IngredientsInput/IngredientsInput";
 import { useState } from "react";
 import AddDirections from "../DirectionsInput/DirectionInput";
 import { useDispatch, useSelector } from "react-redux";
+import Button from '@mui/material/Button';
 
 
 
@@ -69,12 +70,12 @@ function AddRecipes() {
         {/* <p>{ingredients}</p> */}
         <AddDirections/>
         {/* <p>{directions}</p> */}
-        <div>
-        <button onClick={saveRecipe}>Save Recipe</button>
+        
+        <Button onClick={saveRecipe} variant='contained' sx={{color: 'black' ,width: 300, ml: 4, mt: 5, mr: 5, backgroundColor: 'lightblue'}}>Save Recipe</Button>
         <Link to='/home' >
-            <button>Home Screen</button>
+            <button className="homeBtn">Home Screen</button>
         </Link>
-        </div>
+        
     </>)
 }
 
