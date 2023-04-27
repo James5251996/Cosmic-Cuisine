@@ -101,8 +101,8 @@ function GetRecipesDetails() {
                         </select>
                         <textarea className="largeInputs" value={newIngredients} onChange={(event) => setNewIngredients(event.target.value)}></textarea>
                         <textarea className="largeInputs" value={newDirections} onChange={(event) => setNewDirections(event.target.value)}></textarea>
-                        <button onClick={sendDispatch}>Save Changes</button>
-                        <Button onClick={() => setOpenAlert(true)}>Delete Recipe</Button>
+                        <Button onClick={sendDispatch} sx={{backgroundColor: 'lightblue', color: 'white', ml: 5, mr: 3}}>Save Changes</Button>
+                        <Button onClick={() => setOpenAlert(true)} sx={{backgroundColor: 'red', color: 'white'}}>Delete Recipe</Button>
                         <Dialog
                             open={openAlert}>
                             <DialogContent>
