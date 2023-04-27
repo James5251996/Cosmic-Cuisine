@@ -12,3 +12,11 @@ p{
 .pic {
     height: 300px;
 }
+
+textarea {
+    background-color: transparent;
+    color: #fff4fa;
+    height: 200px;
+    margin-left: 30px;
+    margin-right: 30px;
+}

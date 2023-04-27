@@ -3,6 +3,7 @@ import Tesseract from 'tesseract.js';
 import '../DirectionsInput/Directions.css'
 import { useDispatch } from 'react-redux';
 import CircularProgress from '@mui/material/CircularProgress';
+import Button from '@mui/material/Button';
 
 
 
@@ -45,7 +46,7 @@ function AddDirections() {
       <input type='file' onChange={doOCR} placeholder="Add Directions" />
     </div>
     {loadingBar ? <CircularProgress color='secondary' /> : <textarea value={ocr} onChange={(event) => setOcr(event.target.value)}></textarea>}
-    {progress ? <button onClick={storeDirections}>Submit Directions</button> : <p>Directions Submitted</p>}
+    {progress ? <Button sx={{ml: 10, backgroundColor: 'lightblue', color: 'black'}} className='submitBtn' variant='contained' onClick={storeDirections}>Submit Ingredients</Button> : <Button sx={{ml: 10, backgroundColor: 'lightblue', color: 'black'}} disabled variant='contained' >Submit Ingredients</Button>}
   </>)
 }
 
