@@ -66,13 +66,15 @@ function AddRecipes() {
             </Box>
         </div>
         <AddIngredients/>
-        <p>{ingredients}</p>
+        {/* <p>{ingredients}</p> */}
         <AddDirections/>
-        <p>{directions}</p>
+        {/* <p>{directions}</p> */}
+        <div>
         <button onClick={saveRecipe}>Save Recipe</button>
         <Link to='/home' >
             <button>Home Screen</button>
         </Link>
+        </div>
     </>)
 }
 

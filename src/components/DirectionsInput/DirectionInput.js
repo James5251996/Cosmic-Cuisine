@@ -8,7 +8,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 function AddDirections() {
   //const [ocr, setOcr] = useState('Loading...Directions');
-  const [imageData, setImageData] = useState('');
   const dispatch = useDispatch();
   const [progress, setProgress] = useState(false)
   const [ocr, setOcr] = useState('Choose Image for Directions');
@@ -21,13 +20,12 @@ function AddDirections() {
       type: 'STORE_DIRECTIONS',
       payload: ocr
     })
-  }
+    setProgress(false)
+  };
 
   const doOCR = async (e) => {
     setLoadingBar(true)
-    setOcr('Recognizing...');
-    console.log('this is my type:', typeof (e.target.files[0].name))
-    setImageData(e.target.files[0].name)
+    //console.log('this is my type:', typeof (e.target.files[0].name))
     try {
       const result = await Tesseract.recognize(
         e.target.files[0],
@@ -46,8 +44,8 @@ function AddDirections() {
     <div>
       <input type='file' onChange={doOCR} placeholder="Add Directions" />
     </div>
-    {loadingBar ? <CircularProgress color='secondary' /> : <p>{ocr}</p>}
-    {progress ? <button onClick={storeDirections}>Submit Ingrediets</button> : <p></p>}
+    {loadingBar ? <CircularProgress color='secondary' /> : <textarea value={ocr} onChange={(event) => setOcr(event.target.value)}></textarea>}
+    {progress ? <button onClick={storeDirections}>Submit Directions</button> : <p>Directions Submitted</p>}
   </>)
 }
 
