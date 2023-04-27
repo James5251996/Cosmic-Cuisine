@@ -76,11 +76,11 @@ function UserPage() {
               <CardActionArea onClick={() => viewDetails(recipe.id)}>
                   <CardMedia component='img' sx={{height: 150, justifyContent: 'center'}}
                   image={recipe.image} />
-                <CardContent>
+                <CardContent sx={{backgroundColor: '#FFEF80'}}>
                   <Typography gutterBottom variant='h5' component='div'>
                     {recipe.title} 
                   </Typography>
-                  <Typography>
+                  <Typography gutterBottom variant='h5' component='div' fontSize={16}>
                     {recipe.category}
                   </Typography>
                 </CardContent>
