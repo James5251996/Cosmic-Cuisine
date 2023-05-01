@@ -51,12 +51,12 @@ function UserPage() {
       {/* Here is where the buttons are made to create a dispatch to filter the recipes from the database */}
       <div className='filterButtons'>
         
-        <Button variant='outlined' sx={{ backgroundColor: '#fe9392', color: 'white', width: 100 }} onClick={() => dispatch({ type: 'GET_BREAKFAST_RECIPES' })}>Breakfast</Button>
-        <Button variant='outlined' sx={{ backgroundColor: '#6e2c99', color: 'white', width: 100 }} onClick={() => dispatch({ type: 'GET_ENTREE_RECIPES' })}>Entree</Button>
-        <Button variant='outlined' sx={{ backgroundColor: '#e771a2', color: 'white', width: 100 }} onClick={() => dispatch({ type: 'GET_DESERT_RECIPES' })}>Dessert</Button>
-        <Button variant='outlined' sx={{ backgroundColor: '#aa4985', color: 'white', width: 100 }} onClick={() => dispatch({ type: 'GET_SNACK_RECIPES' })}>Snack</Button>
-        <Button variant='outlined' sx={{ backgroundColor: '#394baf', color: 'white', width: 100 }} onClick={() => dispatch({ type: 'GET_DRINK_RECIPES' })}>Drink</Button>
-        <Button variant='outlined' sx={{ backgroundColor: 'lightblue', color: 'white', width: 100 }} onClick={() => dispatch({ type: 'GET_ALL_RECIPES' })}>Clear</Button>
+        <Button variant='outlined' sx={{ backgroundColor: 'lightblue', color: 'black', width: 100 }} onClick={() => dispatch({ type: 'GET_BREAKFAST_RECIPES' })}>Breakfast</Button>
+        <Button variant='outlined' sx={{ backgroundColor: 'lightblue', color: 'black', width: 100 }} onClick={() => dispatch({ type: 'GET_ENTREE_RECIPES' })}>Entree</Button>
+        <Button variant='outlined' sx={{ backgroundColor: 'lightblue', color: 'black', width: 100 }} onClick={() => dispatch({ type: 'GET_DESERT_RECIPES' })}>Dessert</Button>
+        <Button variant='outlined' sx={{ backgroundColor: 'lightblue', color: 'black', width: 100 }} onClick={() => dispatch({ type: 'GET_SNACK_RECIPES' })}>Snack</Button>
+        <Button variant='outlined' sx={{ backgroundColor: 'lightblue', color: 'black', width: 100 }} onClick={() => dispatch({ type: 'GET_DRINK_RECIPES' })}>Drink</Button>
+        <Button variant='outlined' sx={{ backgroundColor: 'lightblue', color: 'black', width: 100 }} onClick={() => dispatch({ type: 'GET_ALL_RECIPES' })}>All</Button>
       </div>
       <div className='inputsearch'>
         <input placeholder='Search' onChange={searchRecipes} />
